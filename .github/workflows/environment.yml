@@ -1,0 +1,22 @@
+name: Use Secret Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Use API Key as environment variable
+        env:
+          API_KEY: ${{ sk-12345abcXYZ87secret }}
+        run: |
+          echo "Using API key in a script"
+          # Example usage
+          curl -H "Authorization: Bearer $API_KEY" https://api.example.com
